@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Counter</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      margin-top: 50px;
+    }
+    #counter {
+      font-size: 2em;
+      margin: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      margin: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Simple Counter</h2>
+  <div id="counter">0</div>
+  <button id="increaseBtn">Increase</button>
+  <button id="decreaseBtn">Decrease</button>
+
+  <script>
+    // Select DOM elements using querySelector
+    const counterDisplay = document.querySelector("#counter");
+    const increaseBtn = document.querySelector("#increaseBtn");
+    const decreaseBtn = document.querySelector("#decreaseBtn");
+
+    // Initialize counter value
+    let count = 0;
+
+    // Add event listeners to buttons
+    increaseBtn.addEventListener("click", () => {
+      count++;
+      counterDisplay.textContent = count; 
+    });
+
+    decreaseBtn.addEventListener("click", () => {
+      count--;
+      counterDisplay.textContent = count; // Update DOM
+    });
+  </script>
+
+</body>
+</html>

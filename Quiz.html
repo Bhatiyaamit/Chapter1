@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Quiz</title>
+</head>
+<body>
+  <h2>Simple Quiz Game</h2>
+  <div id="quiz">
+    <p id="question"></p>
+    <div id="options"></div>
+    <button id="nextBtn">Next</button>
+  </div>
+  <p id="score"></p>
+
+  <script>
+    // Array of quiz questions
+const quizData = [
+  {
+    question: "What is the capital of India?",
+    options: ["Delhi", "Mumbai", "Kolkata", "Chennai"],
+    correct: "Delhi"
+  },
+  {
+    question: "Which language runs in a web browser?",
+    options: ["Python", "C++", "Java", "JavaScript"],
+    correct: "JavaScript"
+  },
+  {
+    question: "What is 2 + 2?",
+    options: ["3", "4", "5", "22"],
+    correct: "4"
+  }
+];
+
+let currentQuestion = 0;
+let score = 0;
+
+const questionEl = document.getElementById("question");
+const optionsEl = document.getElementById("options");
+const nextBtn = document.getElementById("nextBtn");
+const scoreEl = document.getElementById("score");
+
+// Function to load question
+function loadQuestion() {
+  optionsEl.innerHTML = ""; // clear old options
+  const q = quizData[currentQuestion];
+  questionEl.textContent = q.question;
+
+  q.options.forEach(option => {
+    const btn = document.createElement("button");
+    btn.textContent = option;
+    btn.onclick = () => checkAnswer(option);
+    optionsEl.appendChild(btn);
+  });
+}
+
+// Function to check answer
+function checkAnswer(answer) {
+  if (answer === quizData[currentQuestion].correct) {
+    score++;
+  }
+  currentQuestion++;
+
+  if (currentQuestion < quizData.length) {
+    loadQuestion();
+  } else {
+    showScore();
+  }
+}
+
+// Function to show score
+function showScore() {
+  questionEl.textContent = "Quiz Over!";
+  optionsEl.innerHTML = "";
+  nextBtn.style.display = "none";
+  scoreEl.textContent = `Your Score: ${score} / ${quizData.length}`;
+}
+
+// Start quiz
+loadQuestion();
+  </script>
+</body>
+</html>
