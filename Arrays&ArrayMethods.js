@@ -13,3 +13,4 @@ console.log(productNames);
 
 const totalPrice = products.reduce((total, product) => total + product.price, 0);
 console.log(totalPrice);
+console.log(totalPrice);
